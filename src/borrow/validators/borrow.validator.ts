@@ -21,6 +21,6 @@ export const returnValidationRules = (): ValidationChain[] => {
       .isInt({ min: 1, max: 10 })
       .withMessage("Score must be an integer between 1 and 10"),
     param("userId").notEmpty().withMessage("User ID  is required"),
-    param("bookId").notEmpty().withMessage("Book ID  is required"),
+    param("borrowId").notEmpty().withMessage("Borrow ID  is required"),
   ];
 };
