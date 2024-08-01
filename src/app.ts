@@ -8,7 +8,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use("/users", userRoutes);
-// app.use("/books", bookRoutes);
-// app.use("/", borrowRoutes);
+app.use("/books", bookRoutes);
+app.use("/", borrowRoutes);
 
 export default app;
