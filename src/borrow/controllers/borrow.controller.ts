@@ -15,7 +15,7 @@ export const borrowBook = async (req: Request, res: Response) => {
       borrowDate
     );
     const newBorrow = await commandHandler.execute(command);
-    res.status(204).send(newBorrow);
+    res.status(200).send(newBorrow);
   } catch (error) {
     if (error instanceof Error) {
       res
@@ -45,7 +45,7 @@ export const returnBook = async (req: Request, res: Response) => {
     const updatedBorrow = await commandHandler.execute(command);
 
     if (updatedBorrow) {
-      res.status(204).send(updatedBorrow);
+      res.status(200).send(updatedBorrow);
     } else {
       res.status(404).json({ message: "Borrow record not found" });
     }
