@@ -4,18 +4,18 @@ import { Book } from "../book/models/book.model";
 import { Borrow } from "../borrow/models/borrow.model";
 import * as dotenv from "dotenv";
 
-dotenv.config();
+dotenv.config({ path: `./.env` });
 
 export const connectDatabase = async () => {
   await createConnection({
-    type: "postgres",
-    host: "localhost",
-    port: 5432,
-    username: "myuser",
-    password: "mysecretpassword",
-    database: "mydb",
+    type: process.env.DB_TYPE as any,
+    host: process.env.DB_HOST,
+    port: parseInt(process.env.DB_PORT || "5432", 10),
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
     entities: [User, Book, Borrow],
-    synchronize: true,
-    logging: false,
+    synchronize: process.env.DB_SYNCHRONIZE === "true",
+    logging: process.env.DB_LOGGING === "true",
   });
 };

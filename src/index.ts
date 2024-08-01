@@ -1,14 +1,9 @@
-import express, { Request, Response } from 'express';
+import app from "./app";
+import { connectDatabase } from "./config/database";
 
-const app = express();
-const port = 3000;
+const port = process.env.APP_PORT || 3000;
 
-app.use(express.json());
-
-app.get('/', (req: Request, res: Response) => {
-  res.send('Library Management API');
-});
-
-app.listen(port, () => {
+app.listen(port, async () => {
+  await connectDatabase();
   console.log(`Server is running at http://localhost:${port}`);
 });
