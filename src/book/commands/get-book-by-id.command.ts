@@ -1,6 +1,6 @@
 import { Command } from "../../commands/interfaces/command";
-import { getRepository } from "typeorm";
 import { Book } from "../models/book.model";
+import { AppDataSource } from "../../config/data-source";
 
 export class GetBookByIdCommand implements Command {
   private bookId: number;
@@ -10,7 +10,7 @@ export class GetBookByIdCommand implements Command {
   }
 
   async execute() {
-    const bookRepository = getRepository(Book);
+    const bookRepository = AppDataSource.getRepository(Book);
     return await bookRepository.findOne({
       where: { id: this.bookId },
       relations: ["borrows"],

@@ -1,6 +1,6 @@
 import { Command } from "../../commands/interfaces/command";
-import { getRepository } from "typeorm";
 import { User } from "../models/user.model";
+import { AppDataSource } from "../../config/data-source";
 
 export class CreateUserCommand implements Command {
   private userData: Partial<User>;
@@ -10,7 +10,9 @@ export class CreateUserCommand implements Command {
   }
 
   async execute() {
-    const userRepository = getRepository(User);
+    
+    const userRepository = AppDataSource.getRepository(User);
+    
     const user = userRepository.create(this.userData);
     return await userRepository.save(user);
   }

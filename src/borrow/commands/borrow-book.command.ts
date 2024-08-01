@@ -1,8 +1,9 @@
 import { Command } from "../../commands/interfaces/command";
-import { IsNull, getRepository } from "typeorm";
+import { IsNull } from "typeorm";
 import { Borrow } from "../models/borrow.model";
 import { User } from "../../user/models/user.model";
 import { Book } from "../../book/models/book.model";
+import { AppDataSource } from "../../config/data-source";
 
 export class BorrowBookCommand implements Command {
   private userId: number;
@@ -16,9 +17,9 @@ export class BorrowBookCommand implements Command {
   }
 
   async execute() {
-    const borrowRepository = getRepository(Borrow);
-    const userRepository = getRepository(User);
-    const bookRepository = getRepository(Book);
+    const borrowRepository = AppDataSource.getRepository(Borrow);
+    const userRepository = AppDataSource.getRepository(User);
+    const bookRepository = AppDataSource.getRepository(Book);
 
     const user = await userRepository.findOne({ where: { id: this.userId } });
     const book = await bookRepository.findOne({ where: { id: this.bookId } });
