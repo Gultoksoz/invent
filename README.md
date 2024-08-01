@@ -14,23 +14,23 @@ This project is a library management system developed using Node.js with Express
 
 ## Installation
 
-# Start Database 
+### Start Database 
 ```bash
 docker run --name postgres-db -e POSTGRES_PASSWORD=mysecretpassword -e POSTGRES_USER=myuser -e POSTGRES_DB=mydb -p 5432:5432 -d postgres
 ```
 
-# Install packages
+### Install packages
 ```bash
 npm install
 npm run build
 ```
 
-# Run Migration
+### Run Migration
 ```bash
 npx typeorm migration:run -d dist/config/data-source.js
 ```
 
-# Start Project
+### Start Project
 ```bash
 npm start
 ```
